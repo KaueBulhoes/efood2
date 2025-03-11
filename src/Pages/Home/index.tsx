@@ -17,8 +17,36 @@ const restaurantList: Restaurants[] = [
         description: 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
         rate: 4.6,
         image: '/Assets/images/la_dolce_vita.png',
-    }
-]
+    },
+    {
+        id: 3,
+        title: 'El Toro Loco',
+        description: 'Sabores intensos da culinária mexicana entregues na sua porta! Tacos, burritos e nachos com ingredientes frescos e autênticos. Experimente nossas salsas picantes e viva uma experiência mexicana de verdade.',
+        rate: 4.8,
+        image: '/Assets/images/el_toro_loco.png',
+    },
+    {
+        id: 4,
+        title: 'Urban Burgers',
+        description: 'Hambúrgueres artesanais, batatas crocantes e molhos especiais. Feitos com carnes selecionadas e opções vegetarianas. Entrega rápida e sabor inigualável para matar sua fome de forma prática.',
+        rate: 4.7,
+        image: '/Assets/images/urban_burgers.png',
+    },
+    {
+        id: 5,
+        title: 'Namaste Curry House',
+        description: 'Explore a autêntica cozinha indiana sem sair de casa! Curries aromáticos, naan fresquinho e especiarias que aquecem a alma. Tudo preparado com muito cuidado para você ter uma experiência única.',
+        rate: 4.8,
+        image: '/Assets/images/namaste_curry_house.png',
+    },
+    {
+        id: 6,
+        title: 'Green Valley Salads',
+        description: 'Opções saudáveis de saladas, wraps e pratos leves. Ingredientes frescos, combinações criativas e molhos irresistíveis. Ideal para quem busca equilíbrio sem abrir mão do sabor!',
+        rate: 4.5,
+        image: '/Assets/images/green_valley_salads.png',
+    },
+];
 
 const Home = () => (
     <>
