@@ -1,13 +1,25 @@
+import Restaurants from "../../Models/Restaurants";
 import RestaurantCard from "../RestaurantCard";
 import { ListContainer, RestList } from "./styles";
 
-export default function RestaurantsList() {
-    return(
-        <ListContainer>
-            <RestList>
-                <RestaurantCard />
-                <RestaurantCard />
-            </RestList>
-        </ListContainer>
-    )
+export type Props = {
+    restaurantList: Restaurants[]
 }
+
+const RestaurantsList = ({ restaurantList }: Props) => (
+    <ListContainer>
+        <RestList>
+            {restaurantList.map((restaurant) => (
+                <RestaurantCard
+                    key={restaurant.id}
+                    title={restaurant.title}
+                    description={restaurant.description}
+                    rate={restaurant.rate}
+                    image={restaurant.image}
+                />
+            ))}
+        </RestList>
+    </ListContainer>
+)
+
+export default RestaurantsList

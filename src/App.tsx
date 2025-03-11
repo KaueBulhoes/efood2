@@ -1,9 +1,7 @@
 import React from 'react';
-import Header from './Components/Header';
 import { BrowserRouter } from 'react-router-dom';
 import { GlobalCss } from './styles';
-import RestaurantsList from './Components/RestaurantsList';
-import Footer from './Components/Footer';
+import Home from './Pages/Home';
 
 function App() {
   return (
@@ -11,9 +9,7 @@ function App() {
       <BrowserRouter>
         <GlobalCss />
         <div className="container">
-          <Header />
-          <RestaurantsList /> 
-          <Footer />
+          <Home />
         </div>
       </BrowserRouter>
     </>
