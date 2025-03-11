@@ -16,6 +16,8 @@ const RestaurantsList = ({ restaurantList }: Props) => (
                     description={restaurant.description}
                     rate={restaurant.rate}
                     image={restaurant.image}
+                    type={restaurant.type}
+                    isFeatured={restaurant.isFeatured ?? false}
                 />
             ))}
         </RestList>

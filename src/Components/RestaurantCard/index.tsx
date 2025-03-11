@@ -5,14 +5,16 @@ export type Props = {
     description: string
     rate: number
     image: string
+    type: string
+    isFeatured: boolean
 }
 
-const RestaurantCard = ({ title, description, rate, image }: Props) => (
+const RestaurantCard = ({ title, description, rate, image, type, isFeatured }: Props) => (
     <Card>
     <ImageContainer>
         <TagContainer>
-            <Tag>Destaque da semana</Tag>
-            <Tag>Japonesa</Tag>
+            {isFeatured && <Tag>Destaque da semana</Tag>}
+            <Tag>{type}</Tag>
         </TagContainer>
         <img src={image} alt=""/>
     </ImageContainer>

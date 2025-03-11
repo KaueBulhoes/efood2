@@ -4,6 +4,8 @@ class Restaurants {
     description: string
     rate: number
     image: string
+    type: string
+    isFeatured?: boolean
 
     constructor(
         id: number,
@@ -11,12 +13,14 @@ class Restaurants {
         description: string,
         rate: number,
         image: string,
+        type: string,
     ) {
         this.id = id
         this.title = title
         this.description = description
         this.rate = rate
         this.image = image
+        this.type = type
     }
 }
 
