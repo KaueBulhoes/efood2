@@ -32,3 +32,22 @@ export const Button = styled.button`
     border: none;
     margin: 12px 0 12px 0;
 `
+
+export const ImageContainer = styled.div`
+    position: relative;
+`
+
+export const TagContainer = styled.div`
+    position: absolute;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+`
+
+export const Tag = styled.button`
+    padding: 4px;
+    color: #FFEBD9;
+    background-color: #E66767;
+    border: none;
+    margin: 12px 0 12px 0;
+`

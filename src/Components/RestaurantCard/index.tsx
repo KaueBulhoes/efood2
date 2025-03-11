@@ -1,9 +1,15 @@
-import { Button, Card, Description, InfoContainer, Title } from "./styles";
+import { Button, Card, Description, ImageContainer, InfoContainer, Tag, TagContainer, Title } from "./styles";
 
 export default function RestaurantCard() {
     return(
         <Card>
-            <img src="/Assets/images/hioki_sushi.png" alt="Sushi"/>
+            <ImageContainer>
+                <TagContainer>
+                    <Tag>Destaque da semana</Tag>
+                    <Tag>Japonesa</Tag>
+                </TagContainer>
+                <img src="/Assets/images/hioki_sushi.png" alt="Sushi"/>
+            </ImageContainer>
             <InfoContainer>
                 <Title>
                     <h3>Hioki Sushi</h3>
