@@ -2,6 +2,7 @@ import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 import RestaurantsList from "../../Components/RestaurantsList";
 import Restaurants from "../../Models/Restaurants";
+import { LogoImage, Title } from "../../Components/Header/styles";
 
 const restaurantList: Restaurants[] = [
     {
@@ -57,7 +58,12 @@ const restaurantList: Restaurants[] = [
 
 const Home = () => (
     <>
-        <Header />
+        <Header>
+            <LogoImage src="/Assets/images/logo.png" alt="efood logo" />
+            <Title>
+                Viva experiências gastronômicas <br /> no conforto da sua casa
+            </Title>
+        </Header>
         <RestaurantsList restaurantList={restaurantList} />
         <Footer />
     </>

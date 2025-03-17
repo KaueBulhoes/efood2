@@ -11,7 +11,6 @@ export const BackgroundPattern = styled.div`
   position: absolute;
   inset: 0;
   background-image: url('/Assets/images/fundo.png');
-
 `;
 
 export const ContentWrapper = styled.div`
@@ -32,4 +31,17 @@ export const Title = styled.h1`
   font-size: 20px;
   text-align: center;
   margin-top: 80px;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+`
+
+export const Text = styled.p`
+  color: #E66767;
+  font-weight: bold;
+  font-size: 18px;
 `;

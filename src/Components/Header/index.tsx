@@ -1,14 +1,15 @@
-import { BackgroundPattern, ContentWrapper, HeaderContainer, LogoImage, Title } from "./styles";
+import { BackgroundPattern, ContentWrapper, HeaderContainer } from "./styles";
 
-export default function Header() {
+interface HeaderProps {
+  children?: React.ReactNode;
+}
+
+export default function Header({children}: HeaderProps) {
     return (
       <HeaderContainer>
         <BackgroundPattern />
         <ContentWrapper>
-          <LogoImage src="/Assets/images/logo.png" alt="efood logo" />
-          <Title>
-            Viva experiências gastronômicas <br /> no conforto da sua casa
-          </Title>
+          {children}
         </ContentWrapper>
       </HeaderContainer>
     );

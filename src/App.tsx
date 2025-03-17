@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { GlobalCss } from './styles';
-import Home from './Pages/Home';
+import PageRoutes from './routes';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <GlobalCss />
         <div className="container">
-          <Home />
+          <PageRoutes />
         </div>
       </BrowserRouter>
     </>
