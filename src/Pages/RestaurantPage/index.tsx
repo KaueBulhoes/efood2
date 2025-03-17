@@ -4,6 +4,12 @@ import Footer from "../../Components/Footer"
 import Header from "../../Components/Header"
 import { Container, LogoImage, Text } from "../../Components/Header/styles"
 import restaurantList from "../../Data/restaurants"
+import FoodList from "../../Components/FoodList"
+import { laDolceVitaMenu, Menu } from "../../Data/menu";
+
+const menuMapping: Record<number, Menu[]> = {
+    2: laDolceVitaMenu
+}
 
 const RestaurantPage = () => {
     const {id} = useParams()
@@ -13,6 +19,8 @@ const RestaurantPage = () => {
     if (!restaurant) {
         return <h1>Restaurante não encontrado!</h1>
     }
+
+    const currentMenu = menuMapping[restaurantId] || [];
 
     return (
         <>
@@ -28,7 +36,13 @@ const RestaurantPage = () => {
                 title={restaurant?.title}
                 image={restaurant?.image}
             />
-            <h1>Hello</h1>
+            {currentMenu && currentMenu.length > 0 ? (
+                <FoodList menuItems={currentMenu} />
+            ) : (
+                <h2 style={{textAlign: 'center', margin: '24px 0'}}>
+                    Este restaurante ainda não possui menu cadastrado.
+                </h2>
+            )}
             <Footer />
         </>
     )
