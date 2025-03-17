@@ -1,12 +1,18 @@
 import { BannerContainer, RestaurantImage, TextContainer, Info, Title } from "./styles";
 
-export default function Banner() {
+type Props = {
+    type: string
+    title: string
+    image: string
+}
+
+export default function Banner({type, title, image}: Props) {
     return(
         <BannerContainer>
-            <RestaurantImage src="/Assets/images/la_dolce_vita.png" alt="efood logo" />
+            <RestaurantImage src={image} alt="efood logo" />
             <TextContainer>
-                <Info>Italiana</Info>
-                <Title>La dolce trattoria</Title>
+                <Info>{type}</Info>
+                <Title>{title}</Title>
             </TextContainer>
         </BannerContainer>
     )

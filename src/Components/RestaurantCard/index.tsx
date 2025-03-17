@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, Description, ImageContainer, InfoContainer, Tag, TagContainer, Title } from "./styles";
 
 export type Props = {
+    id: number
     title: string
     description: string
     rate: number
@@ -10,11 +11,11 @@ export type Props = {
     isFeatured: boolean
 }
 
-const RestaurantCard = ({ title, description, rate, image, type, isFeatured }: Props) => {
+const RestaurantCard = ({ id, title, description, rate, image, type, isFeatured }: Props) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/restaurant')
+        navigate(`/restaurant/${id}`)
     }
 
     return (
