@@ -5,6 +5,7 @@ export const Card = styled.div`
     background-color: #E66767;
     color: #fff;
     padding-bottom: 12px;
+    height: 355px;
 `;
 
 export const ImageContainer = styled.div`

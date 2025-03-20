@@ -31,6 +31,7 @@ export const Button = styled.button`
     background-color: #E66767;
     border: none;
     margin: 12px 0 12px 0;
+    cursor: pointer;
 `
 
 export const ImageContainer = styled.div`
