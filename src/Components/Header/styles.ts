@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
-  padding: 24px 0;
+interface HeaderContainerProps {
+  $height?: string;
+}
+
+export const HeaderContainer = styled.header<HeaderContainerProps>`
+  padding-top: 24px;
   position: relative;
-  height: 186px;
-`;
+  height: ${({ $height }) => $height || "384px"};
+`
 
 export const BackgroundPattern = styled.div`
   position: absolute;
@@ -24,6 +28,7 @@ export const LogoImage = styled.img`
   width: 100px;
   position: absolute;
   right: calc(50% - 50px);
+  top: 63px
 `;
 
 export const Title = styled.h1`
@@ -31,7 +36,7 @@ export const Title = styled.h1`
   font-weight: bold;
   font-size: 20px;
   text-align: center;
-  margin-top: 80px;
+  margin-top: 260px;
 `;
 
 export const Container = styled.div`

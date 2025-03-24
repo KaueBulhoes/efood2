@@ -24,7 +24,7 @@ const RestaurantPage = () => {
 
     return (
         <>
-            <Header>
+            <Header height="186px">
                 <Container>
                     <Text>Restaurantes</Text>
                     <Text>0 produto(s) no carrinho</Text>

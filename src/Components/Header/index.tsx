@@ -2,11 +2,12 @@ import { BackgroundPattern, ContentWrapper, HeaderContainer, LogoImage } from ".
 
 interface HeaderProps {
   children?: React.ReactNode;
+  height?: string;
 }
 
-export default function Header({children}: HeaderProps) {
+export default function Header({ children, height }: HeaderProps) {
     return (
-      <HeaderContainer>
+      <HeaderContainer $height={height}>
         <BackgroundPattern />
         <LogoImage src="/Assets/images/logo.png" alt="efood logo" />
         <ContentWrapper>

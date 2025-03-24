@@ -6,7 +6,7 @@ import { Title } from "../../Components/Header/styles";
 
 const Home = () => (
     <>
-        <Header>
+        <Header height="384px">
             <Title>
                 Viva experiências gastronômicas <br /> no conforto da sua casa
             </Title>
