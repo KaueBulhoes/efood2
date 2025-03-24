@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Description, ImageContainer, InfoContainer, Tag, TagContainer, Title } from "./styles";
+import { Button, Card, Description, ImageContainer, InfoContainer, RateContainer, Tag, TagContainer, Title } from "./styles";
 
 export type Props = {
     id: number
@@ -30,7 +30,10 @@ const RestaurantCard = ({ id, title, description, rate, image, type, isFeatured 
             <InfoContainer>
                 <Title>
                     <h3>{title}</h3>
-                    <span>{rate}</span>
+                    <RateContainer>
+                        <span>{rate}</span>
+                        <img src="Assets/images/estrela.png" alt="" />
+                    </RateContainer>
                 </Title>
                 <Description>
                     <p>{description}</p>

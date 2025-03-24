@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-  background-color: #FFEBD9;
-  align-items: center;
   padding: 24px 0;
   position: relative;
+  height: 186px;
 `;
 
 export const BackgroundPattern = styled.div`
@@ -18,11 +17,13 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 109px;
 `;
 
 export const LogoImage = styled.img`
   width: 100px;
-  height: auto;
+  position: absolute;
+  right: 45%;
 `;
 
 export const Title = styled.h1`
@@ -35,9 +36,11 @@ export const Title = styled.h1`
 
 export const Container = styled.div`
   display: flex;
+  position: absolute;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
+  top: 43px;
 `
 
 export const Text = styled.p`

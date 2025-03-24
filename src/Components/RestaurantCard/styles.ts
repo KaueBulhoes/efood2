@@ -7,7 +7,10 @@ export const Card = styled.div`
 `
 
 export const InfoContainer = styled.div`
-    margin: 10px;
+    height: 181px;
+    border: 1px #E66767 solid;
+    border-top: none;
+    padding: 10px;
 `
 
 export const Title = styled.div`
@@ -15,6 +18,18 @@ export const Title = styled.div`
     justify-content: space-between;
     font-size: 18px;
     line-height: 100%;
+`
+
+export const RateContainer = styled.div`
+    display: flex;
+    gap: 8px;
+    width: 55px;
+    height: 21px;
+    align-items: center;
+
+    span {
+        font-weight: 700;
+    }
 `
 
 export const Description = styled.div`
@@ -36,19 +51,20 @@ export const Button = styled.button`
 
 export const ImageContainer = styled.div`
     position: relative;
+    height: 217px;
 `
 
 export const TagContainer = styled.div`
     position: absolute;
+    top: 12px;
     right: 12px;
     display: flex;
     gap: 8px;
 `
 
 export const Tag = styled.button`
-    padding: 4px;
+    padding: 6px;
     color: #FFEBD9;
     background-color: #E66767;
     border: none;
-    margin: 12px 0 12px 0;
 `
