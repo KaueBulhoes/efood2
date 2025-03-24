@@ -10,7 +10,7 @@ export const InfoContainer = styled.div`
     height: 181px;
     border: 1px #E66767 solid;
     border-top: none;
-    padding: 10px;
+    padding: 8px;
 `
 
 export const Title = styled.div`
@@ -45,7 +45,7 @@ export const Button = styled.button`
     color: #FFEBD9;
     background-color: #E66767;
     border: none;
-    margin: 12px 0 12px 0;
+    margin-top: 16px;
     cursor: pointer;
 `
 
