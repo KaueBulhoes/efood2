@@ -23,7 +23,7 @@ export const ContentWrapper = styled.div`
 export const LogoImage = styled.img`
   width: 100px;
   position: absolute;
-  right: 45%;
+  right: calc(50% - 50px);
 `;
 
 export const Title = styled.h1`
