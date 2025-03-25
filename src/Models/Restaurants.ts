@@ -1,27 +1,19 @@
-class Restaurants {
-    id: number
-    title: string
-    description: string
-    rate: number
-    image: string
-    type: string
-    isFeatured?: boolean
+export type ItemCardapio = {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    portion: string;
+    price: number;
+};
 
-    constructor(
-        id: number,
-        title: string,
-        description: string,
-        rate: number,
-        image: string,
-        type: string,
-    ) {
-        this.id = id
-        this.title = title
-        this.description = description
-        this.rate = rate
-        this.image = image
-        this.type = type
-    }
-}
-
-export default Restaurants
+export type Restaurants = {
+    id: number;
+    title: string;
+    image: string;
+    description: string;
+    isFeatured: boolean;
+    type: string;
+    rate: number;
+    menu: ItemCardapio[];
+};

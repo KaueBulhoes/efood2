@@ -7,7 +7,8 @@ export const Card = styled.div`
 `
 
 export const InfoContainer = styled.div`
-    height: 181px;
+    height: 100%;
+    max-height: 200px;
     border: 1px #E66767 solid;
     border-top: none;
     padding: 8px;
@@ -37,6 +38,7 @@ export const Description = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
+    height: 110px;
 `
 
 export const Button = styled.button`
@@ -52,6 +54,12 @@ export const Button = styled.button`
 export const ImageContainer = styled.div`
     position: relative;
     height: 217px;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
 `
 
 export const TagContainer = styled.div`
