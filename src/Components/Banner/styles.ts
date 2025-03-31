@@ -18,7 +18,7 @@ export const TextContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 80%;
-    margin: 25px 109px;
+    margin: 25px 171px;
     color: #fff;
     font-size: 32px;
 `
