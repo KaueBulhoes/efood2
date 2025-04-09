@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import Banner from "../../Components/Banner/inedx"
 import Footer from "../../Components/Footer"
 import Header from "../../Components/Header"
-import { Container, Text } from "../../Components/Header/styles"
+import { TextContainer, Text } from "../../Components/Header/styles"
 import restaurantList from "../../Data/restaurants"
 import FoodList from "../../Components/FoodList"
 import { laDolceVitaMenu, Menu } from "../../Data/menu";
@@ -25,10 +25,10 @@ const RestaurantPage = () => {
     return (
         <>
             <Header height="186px">
-                <Container>
+                <TextContainer>
                     <Text>Restaurantes</Text>
                     <Text>0 produto(s) no carrinho</Text>
-                </Container>
+                </TextContainer>
             </Header>
             <Banner 
                 type={restaurant?.type}

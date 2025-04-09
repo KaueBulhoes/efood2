@@ -40,12 +40,13 @@ export const Title = styled.h1`
   margin-top: 196px;
 `;
 
-export const Container = styled.div`
+export const TextContainer = styled.div`
   display: flex;
   position: absolute;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 1024px;
   top: 43px;
 `
 
