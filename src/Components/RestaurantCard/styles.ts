@@ -38,7 +38,8 @@ export const Description = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
-    height: 110px;
+    max-height: 104px;
+    height: 100%;
 `
 
 export const Button = styled.button`
@@ -47,7 +48,6 @@ export const Button = styled.button`
     color: #FFEBD9;
     background-color: #E66767;
     border: none;
-    margin-top: 16px;
     cursor: pointer;
 `
 

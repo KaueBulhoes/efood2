@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
     background-color: #E66767;
-    color: #fff;
+    color: #FFEBD9;
 `;
 
 export const ImageContainer = styled.div`
@@ -34,7 +35,7 @@ export const Title = styled.div`
 
 export const Description = styled.div`
     font-size: 14px;
-    line-height: 18px;
+    line-height: 22px;
     height: 88px;
 `;
 
