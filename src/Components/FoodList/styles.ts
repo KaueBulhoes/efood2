@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
 export const FoodListContainer = styled.div`
-    max-width: 1024px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    justify-items: center;
-    gap: 32px;
-    margin: 56px auto 120px;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 40px;
+    margin: 80px 0;
+
+    :nth-child(3n + 2) {
+        margin: 0 auto;
+    }
+    
+    :nth-child(3n) {
+        justify-self: end;
+    }
+`
+export const ListContainer = styled.div`
+    margin: 0 109px;
 `

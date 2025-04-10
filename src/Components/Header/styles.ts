@@ -7,7 +7,7 @@ interface HeaderContainerProps {
 export const HeaderContainer = styled.header<HeaderContainerProps>`
   padding-top: 24px;
   position: relative;
-  height: ${({ $height }) => $height || "100%"};
+  height: ${({ $height }) => $height || "384px"};
 `
 
 export const BackgroundPattern = styled.div`
@@ -21,32 +21,30 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 171px;
-  padding-bottom: 40px;
+  margin: 0 109px;
 `;
 
 export const LogoImage = styled.img`
-  width: 125px;
+  width: 100px;
   position: absolute;
   right: calc(50% - 50px);
-  top: 40px
+  top: 63px
 `;
 
 export const Title = styled.h1`
   color: #E66767;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 20px;
   text-align: center;
-  margin-top: 196px;
+  margin-top: 260px;
 `;
 
-export const TextContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   position: absolute;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1024px;
   top: 43px;
 `
 

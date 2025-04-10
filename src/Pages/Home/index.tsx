@@ -15,7 +15,7 @@ const Home = () => {
 
     return (
     <>
-        <Header height="100%">
+        <Header height="384px">
             <Title>
                 Viva experiências gastronômicas <br /> no conforto da sua casa
             </Title>

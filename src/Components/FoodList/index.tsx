@@ -1,23 +1,25 @@
 import { Menu } from "../../Data/menu";
 import FoodCard from "../FoodCard";
-import { FoodListContainer } from "./styles";
+import { ListContainer, FoodListContainer } from "./styles";
 
 export type Props = {
     menuItems: Menu[]
 }
 
 const FoodList = ({menuItems}: Props) => (
-    <FoodListContainer>
-        {menuItems.map((menu) => (
-            <FoodCard 
-                key={menu.id}
-                title={menu.title}
-                description={menu.description}
-                image={menu.image}
+    <ListContainer>
+        <FoodListContainer>
+            {menuItems.map((menu) => (
+                <FoodCard 
+                    key={menu.id}
+                    title={menu.title}
+                    description={menu.description}
+                    image={menu.image}
 
-            />
-        ))}
-    </FoodListContainer>
+                />
+            ))}
+        </FoodListContainer>
+    </ListContainer>
 )
 
 export default FoodList
