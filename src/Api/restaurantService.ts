@@ -1,6 +1,5 @@
 import { Restaurants } from "../Models/Restaurants";
 
-
 const API_URL = 'https://fake-api-tau.vercel.app/api/efood/restaurantes';
 
 export const restaurantService = {

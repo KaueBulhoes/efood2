@@ -1,9 +1,8 @@
-import { Menu } from "../../Data/menu";
 import FoodCard from "../FoodCard";
 import { FoodListContainer } from "./styles";
 
 export type Props = {
-    menuItems: Menu[]
+    menuItems: any[]
 }
 
 const FoodList = ({menuItems}: Props) => (
