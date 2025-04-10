@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
+    height: 100%;
     width: 100%;
     max-width: 320px;
     background-color: #E66767;
     color: #FFEBD9;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const ImageContainer = styled.div`
@@ -20,6 +23,9 @@ export const ImageContainer = styled.div`
 `;
 
 export const InfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 8px;
 `;
 
@@ -36,7 +42,7 @@ export const Title = styled.div`
 export const Description = styled.div`
     font-size: 14px;
     line-height: 22px;
-    height: 88px;
+    height: 100%;
 `;
 
 export const Button = styled.button`
@@ -45,7 +51,7 @@ export const Button = styled.button`
     color: #E66767;
     background-color: #FFEBD9;
     border: none;
-    margin-top: 8px;
+    margin-top: auto;
     cursor: pointer;
     font-weight: bold;
 `;
