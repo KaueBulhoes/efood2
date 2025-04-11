@@ -1,4 +1,4 @@
-import { FoodModalContainer, ModalAddButton, ModalCloseButton, ModalDescription, ModalPortionText, ModalTextConainter } from "./styles";
+import { FoodModalContainer, ModalAddButton, ModalCloseButton, ModalDescription, ModalPortionText, ModalTextConainter, Overlay } from "./styles";
 
 type FoodModalProps = {
     isVisible: boolean;
@@ -15,6 +15,7 @@ const FoodModal = ({ isVisible, onClose, title, description, portion, price, ima
 
     return (
         <>
+            <Overlay onClick={onClose}/>
             <FoodModalContainer>
                 <img src={image} alt="" />
                 <ModalTextConainter>
