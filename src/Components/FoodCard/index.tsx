@@ -8,14 +8,10 @@ export type Props = {
 }
 
 const FoodCard = ({title, description, image, onOpenModal }: Props) => {
-    const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-        event.currentTarget.src = "https://placehold.co/304x167";
-    };
-
     return (
         <Card>
             <ImageContainer>
-                <img src={image} alt={title} onError={handleImageError}/>
+                <img src={image} alt={title}/>
             </ImageContainer>
             <InfoContainer>
                 <Title>

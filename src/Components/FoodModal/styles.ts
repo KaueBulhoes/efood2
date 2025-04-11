@@ -10,6 +10,12 @@ export const FoodModalContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+
+    > img {
+        height: 280px;
+        width: 280px;
+        object-fit: cover;
+    }
 `
 
 export const ModalTextConainter = styled.div`
@@ -39,7 +45,7 @@ export const ModalPortionText = styled.p`
     margin-bottom: 16px;
 `
 
-export const ModalButton = styled.button`
+export const ModalAddButton = styled.button`
     width: 218px;
     height: 24px;
     color: #E66767;
@@ -50,6 +56,8 @@ export const ModalButton = styled.button`
     line-height: 100%;
     text-align: center;
     border: none;
+    cursor: pointer;
+    margin-top: auto;
 `
 
 export const ModalCloseButton = styled.button`

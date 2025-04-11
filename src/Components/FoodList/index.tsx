@@ -2,13 +2,20 @@ import { useState } from "react";
 import FoodCard from "../FoodCard";
 import { FoodListContainer } from "./styles";
 import FoodModal from "../FoodModal";
+import { ItemCardapio } from "../../Models/Restaurants";
 
 export type Props = {
-    menuItems: any[]
+    menuItems: ItemCardapio[]
 }
 
 const FoodList = ({menuItems}: Props) => {
     const [modal, setModal] = useState(false)
+    const [selectedItem, setSelectedItem] = useState<ItemCardapio | null>(null);
+
+    const openModal = (item: ItemCardapio) => {
+        setSelectedItem(item)
+        setModal(true)
+    }
 
     return (
         <>
@@ -16,17 +23,24 @@ const FoodList = ({menuItems}: Props) => {
                 {menuItems.map((menu) => (
                     <FoodCard 
                         key={menu.id}
-                        title={menu.title}
+                        title={menu.name}
                         description={menu.description}
                         image={menu.image}
-                        onOpenModal={() => setModal(true)}
+                        onOpenModal={() => openModal(menu)}
                     />
                 ))}
             </FoodListContainer>
-            <FoodModal
+            {selectedItem && (
+                <FoodModal
                 isVisible={modal}
                 onClose={() => setModal(false)}
-            />
+                title={selectedItem.name}
+                description={selectedItem.description}
+                portion={selectedItem.portion}
+                price={`R$ ${selectedItem.price.toFixed(2).replace('.', ',')}`}
+                image={selectedItem.image}
+                />
+            )}
         </>
     )
 }
