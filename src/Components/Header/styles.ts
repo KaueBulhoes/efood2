@@ -29,7 +29,9 @@ export const LogoImage = styled.img`
   width: 125px;
   position: absolute;
   right: calc(50% - 50px);
-  top: 40px
+  top: 40px;
+  z-index: 1;
+  cursor: pointer;
 `;
 
 export const Title = styled.h1`
