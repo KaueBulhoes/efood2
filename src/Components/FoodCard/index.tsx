@@ -4,9 +4,10 @@ export type Props = {
     title: string
     description: string
     image: string
+    onOpenModal: () => void;
 }
 
-const FoodCard = ({title, description, image}: Props) => {
+const FoodCard = ({title, description, image, onOpenModal }: Props) => {
     const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
         event.currentTarget.src = "https://placehold.co/304x167";
     };
@@ -23,7 +24,7 @@ const FoodCard = ({title, description, image}: Props) => {
                 <Description>
                     <p>{description}</p>
                 </Description>
-                <Button>Adicionar ao carrinho</Button>
+                <Button onClick={onOpenModal}>Mais detalhes</Button>
             </InfoContainer>
         </Card>
     )
