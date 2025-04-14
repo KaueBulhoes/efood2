@@ -3,24 +3,26 @@ import Banner from "../../Components/Banner/inedx"
 import Footer from "../../Components/Footer"
 import Header from "../../Components/Header"
 import { TextContainer, Text } from "../../Components/Header/styles"
-import restaurantList from "../../Data/restaurants"
 import FoodList from "../../Components/FoodList"
-import { laDolceVitaMenu, Menu } from "../../Data/menu";
-
-const menuMapping: Record<number, Menu[]> = {
-    2: laDolceVitaMenu
-}
+import { useEffect, useState } from "react"
+import { restaurantService } from "../../Api/restaurantService"
+import { Restaurants } from "../../Models/Restaurants"
 
 const RestaurantPage = () => {
+    const [restaurantsCatalog, setRestaurantsCatalog] = useState<Restaurants[]>([])
+
+    useEffect(() => {
+        restaurantService.getRestaurants().then(setRestaurantsCatalog)
+    }, []);
+
     const {id} = useParams()
     const restaurantId = parseInt(id || '', 10)
-    const restaurant = restaurantList.find(r => r.id === restaurantId)
+    const restaurant = restaurantsCatalog.find(r => r.id === restaurantId)
+    console.log("restaurant", restaurant)
 
     if (!restaurant) {
         return <h1>Restaurante não encontrado!</h1>
     }
-
-    const currentMenu = menuMapping[restaurantId] || [];
 
     return (
         <>
@@ -35,8 +37,8 @@ const RestaurantPage = () => {
                 title={restaurant?.title}
                 image={restaurant?.image}
             />
-            {currentMenu && currentMenu.length > 0 ? (
-                <FoodList menuItems={currentMenu} />
+            {restaurant?.menu.length > 0 ? (
+                <FoodList menuItems={restaurant?.menu} />
             ) : (
                 <h2 style={{textAlign: 'center', margin: '24px 0'}}>
                     Este restaurante ainda não possui menu cadastrado.

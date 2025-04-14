@@ -1,23 +1,48 @@
-import { Menu } from "../../Data/menu";
+import { useState } from "react";
 import FoodCard from "../FoodCard";
 import { FoodListContainer } from "./styles";
+import FoodModal from "../FoodModal";
+import { ItemCardapio } from "../../Models/Restaurants";
 
 export type Props = {
-    menuItems: Menu[]
+    menuItems: ItemCardapio[]
 }
 
-const FoodList = ({menuItems}: Props) => (
-    <FoodListContainer>
-        {menuItems.map((menu) => (
-            <FoodCard 
-                key={menu.id}
-                title={menu.title}
-                description={menu.description}
-                image={menu.image}
+const FoodList = ({menuItems}: Props) => {
+    const [modal, setModal] = useState(false)
+    const [selectedItem, setSelectedItem] = useState<ItemCardapio | null>(null);
 
-            />
-        ))}
-    </FoodListContainer>
-)
+    const openModal = (item: ItemCardapio) => {
+        setSelectedItem(item)
+        setModal(true)
+    }
+
+    return (
+        <>
+            <FoodListContainer>
+                {menuItems.map((menu) => (
+                    <FoodCard 
+                        key={menu.id}
+                        title={menu.name}
+                        description={menu.description}
+                        image={menu.image}
+                        onOpenModal={() => openModal(menu)}
+                    />
+                ))}
+            </FoodListContainer>
+            {selectedItem && (
+                <FoodModal
+                isVisible={modal}
+                onClose={() => setModal(false)}
+                title={selectedItem.name}
+                description={selectedItem.description}
+                portion={selectedItem.portion}
+                price={`R$ ${selectedItem.price.toFixed(2).replace('.', ',')}`}
+                image={selectedItem.image}
+                />
+            )}
+        </>
+    )
+}
 
 export default FoodList

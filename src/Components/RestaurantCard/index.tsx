@@ -14,7 +14,7 @@ export type Props = {
 const RestaurantCard = ({ id, title, description, rate, image, type, isFeatured }: Props) => {
     const navigate = useNavigate();
 
-    const handleClick = () => {
+    const goToRestaurant = () => {
         navigate(`/restaurant/${id}`)
     }
 
@@ -38,7 +38,7 @@ const RestaurantCard = ({ id, title, description, rate, image, type, isFeatured 
                 <Description>
                     <p>{description}</p>
                 </Description>
-                <Button onClick={handleClick}>Saiba mais</Button>
+                <Button onClick={goToRestaurant}>Saiba mais</Button>
             </InfoContainer>
         </Card>
     )

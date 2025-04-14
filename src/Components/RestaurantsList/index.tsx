@@ -1,15 +1,15 @@
-import Restaurants from "../../Models/Restaurants";
+import { Restaurants } from "../../Models/Restaurants";
 import RestaurantCard from "../RestaurantCard";
 import { ListContainer, RestList } from "./styles";
 
 export type Props = {
-    restaurantList: Restaurants[]
+    restaurantsCatalog: Restaurants[]
 }
 
-const RestaurantsList = ({ restaurantList }: Props) => (
+const RestaurantsList = ({ restaurantsCatalog }: Props) => (
     <ListContainer>
         <RestList>
-            {restaurantList.map((restaurant) => (
+            {restaurantsCatalog.map((restaurant) => (
                 <RestaurantCard
                     key={restaurant.id}
                     id={restaurant.id}
