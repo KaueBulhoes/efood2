@@ -78,7 +78,7 @@ export const CartItem = styled.li`
 
 export const QuantityContainer = styled.p`
     display: flex;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 14px;
     color: #FFEBD9;
     margin-top: 40px;

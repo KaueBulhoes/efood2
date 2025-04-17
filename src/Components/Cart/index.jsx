@@ -1,3 +1,4 @@
+import { Button } from "../FoodCard/styles"
 import { CartContainer, CartItem, Overlay, QuantityContainer, Sidebar } from "./styles"
 
 const Cart = () => {
@@ -31,6 +32,7 @@ const Cart = () => {
                     <p>Valor Total</p>
                     <span>R$ 182,70</span>
                 </QuantityContainer>
+                <Button>Continuar com a entrega</Button>
             </Sidebar>
         </CartContainer>
     )
