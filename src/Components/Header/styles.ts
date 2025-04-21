@@ -57,3 +57,7 @@ export const Text = styled.p`
   font-weight: bold;
   font-size: 18px;
 `;
+
+export const TextCart = styled(Text)`
+  cursor: pointer;
+`;
