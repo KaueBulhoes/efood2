@@ -34,11 +34,7 @@ const FoodList = ({menuItems}: Props) => {
                 <FoodModal
                 isVisible={modal}
                 onClose={() => setModal(false)}
-                title={selectedItem.name}
-                description={selectedItem.description}
-                portion={selectedItem.portion}
-                price={`R$ ${selectedItem.price.toFixed(2).replace('.', ',')}`}
-                image={selectedItem.image}
+                item={selectedItem}
                 />
             )}
         </>

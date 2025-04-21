@@ -2,25 +2,33 @@ import { useParams } from "react-router-dom"
 import Banner from "../../Components/Banner/inedx"
 import Footer from "../../Components/Footer"
 import Header from "../../Components/Header"
-import { TextContainer, Text } from "../../Components/Header/styles"
+import { TextContainer, Text, TextCart } from "../../Components/Header/styles"
 import FoodList from "../../Components/FoodList"
-import { useEffect, useState } from "react"
-import { restaurantService } from "../../Api/restaurantService"
-import { Restaurants } from "../../Models/Restaurants"
+import { useGetRestaurantsQuery } from "../../Api/restaurantService"
+import { useDispatch, useSelector } from "react-redux"
+import { RootReducer } from "../../Store"
+import { open } from '../../Store/reducers/cart'
+
 
 const RestaurantPage = () => {
-    const [restaurantsCatalog, setRestaurantsCatalog] = useState<Restaurants[]>([])
-
-    useEffect(() => {
-        restaurantService.getRestaurants().then(setRestaurantsCatalog)
-    }, []);
-
-    const {id} = useParams()
+    const { items } = useSelector((state: RootReducer) => state.cart)
+    const { id } = useParams()
     const restaurantId = parseInt(id || '', 10)
+    
+    const { data: restaurantsCatalog = [], isLoading, error } = useGetRestaurantsQuery()
+    
     const restaurant = restaurantsCatalog.find(r => r.id === restaurantId)
-    console.log("restaurant", restaurant)
+    
+    const dispatch = useDispatch()
+    const openCart = () => {
+        dispatch(open())
+    }
 
-    if (!restaurant) {
+    if (isLoading) {
+        return <h1>Carregando restaurante...</h1>
+    }
+
+    if (error || !restaurant) {
         return <h1>Restaurante não encontrado!</h1>
     }
 
@@ -29,18 +37,18 @@ const RestaurantPage = () => {
             <Header height="186px">
                 <TextContainer>
                     <Text>Restaurantes</Text>
-                    <Text>0 produto(s) no carrinho</Text>
+                    <TextCart onClick={openCart}>{items.length} produto(s) no carrinho</TextCart>
                 </TextContainer>
             </Header>
             <Banner 
-                type={restaurant?.type}
-                title={restaurant?.title}
-                image={restaurant?.image}
+                type={restaurant.type}
+                title={restaurant.title}
+                image={restaurant.image}
             />
-            {restaurant?.menu.length > 0 ? (
-                <FoodList menuItems={restaurant?.menu} />
+            {restaurant.menu.length > 0 ? (
+                <FoodList menuItems={restaurant.menu} />
             ) : (
-                <h2 style={{textAlign: 'center', margin: '24px 0'}}>
+                <h2 style={{ textAlign: 'center', margin: '24px 0' }}>
                     Este restaurante ainda não possui menu cadastrado.
                 </h2>
             )}

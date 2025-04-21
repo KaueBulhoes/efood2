@@ -1,28 +1,35 @@
 import { FoodModalContainer, ModalAddButton, ModalCloseButton, ModalDescription, ModalPortionText, ModalTextConainter, Overlay } from "./styles";
+import { open, add } from '../../Store/reducers/cart'
+import { useDispatch } from "react-redux";
+import { ItemCardapio } from "../../Models/Restaurants";
+import formatPrice from "../../utils/formatPrice";
 
 type FoodModalProps = {
     isVisible: boolean;
     onClose: () => void;
-    title: string;
-    description: string;
-    portion: string;
-    price: string;
-    image: string;
+    item: ItemCardapio;
 }
 
-const FoodModal = ({ isVisible, onClose, title, description, portion, price, image }: FoodModalProps) => {
+const FoodModal = ({ isVisible, onClose, item }: FoodModalProps) => {
+        const dispatch = useDispatch()
+        
+        const addToCart = () => {
+            dispatch(add(item))
+            dispatch(open())
+        }
+
     if (!isVisible) return null;
 
     return (
         <>
             <Overlay onClick={onClose}/>
             <FoodModalContainer>
-                <img src={image} alt="" />
+                <img src={item.image} alt="" />
                 <ModalTextConainter>
-                    <h3>{title}</h3>
-                    <ModalDescription>{description}</ModalDescription>
-                    <ModalPortionText>Serve: {portion}</ModalPortionText>
-                    <ModalAddButton>Adicionar ao carrinho - {price}</ModalAddButton>
+                    <h3>{item.name}</h3>
+                    <ModalDescription>{item.description}</ModalDescription>
+                    <ModalPortionText>Serve: {item.portion}</ModalPortionText>
+                    <ModalAddButton onClick={addToCart}>Adicionar ao carrinho - {formatPrice(item.price)}</ModalAddButton>
                     <ModalCloseButton onClick={onClose}>
                     <img src="/Assets/images/close_button.png" alt="Fechar" />
                     </ModalCloseButton>
