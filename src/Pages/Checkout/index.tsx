@@ -5,7 +5,7 @@ import formatPrice from '../../utils/formatPrice'
 import { remove, close } from '../../Store/reducers/cart'
 import { Button } from '../../Components/FoodCard/styles'
 import SideBarCheckout from '../../Components/SideBarCheckout'
-import { CartItem, QuantityContainer } from './styles'
+import { CartItem, InputGroup, QuantityContainer } from './styles'
 
 const Checkout = () => {
     const [step, setStep] = useState(0)
@@ -64,9 +64,12 @@ const Checkout = () => {
 
         {step === 1 && (
             <>
-            {/* Inputs do formulário de entrega aqui */}
-            <Button onClick={nextStep}>Continuar com o pagamento</Button>
-            <Button onClick={backStep}>Voltar para o carrinho</Button>
+                <InputGroup>
+                    <label htmlFor="buyerName">Quem irá receber</label>
+                    <input type="text" />
+                </InputGroup>
+                <Button onClick={nextStep}>Continuar com o pagamento</Button>
+                <Button onClick={backStep}>Voltar para o carrinho</Button>
             </>
         )}
 

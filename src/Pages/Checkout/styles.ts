@@ -51,3 +51,27 @@ export const QuantityContainer = styled.p`
     margin-bottom: 16px;
     justify-content: space-between
 `
+
+export const InputGroup = styled.div`
+margin-bottom: 8px;
+    label {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        display: block;
+        color: #FFEBD9;
+    }
+
+    input,
+    select {
+        background-color: #FFEBD9;
+        border: none;
+        height: 32px;
+        padding: 0 8px;
+        width: 100%;
+
+    &.error {
+        border: 1px solid red;
+    }
+    }
+`

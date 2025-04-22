@@ -31,4 +31,11 @@ export const Sidebar = styled.aside`
     padding: 32px 8px 0 8px;
     max-width: 360px;
     width: 100%;
+    > h2 {
+        color: #FFEBD9;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 100%;
+        margin-bottom: 16px;
+    }
 `
