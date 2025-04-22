@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { GlobalCss } from './styles';
 import PageRoutes from './routes';
-import Cart from './Components/Cart';
 import { Provider } from 'react-redux';
 import { store } from './Store';
+import Checkout from './Pages/Checkout';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <div className="container">
             <PageRoutes />
           </div>
-          <Cart />
+          <Checkout />
         </BrowserRouter>
     </Provider>
     </>
