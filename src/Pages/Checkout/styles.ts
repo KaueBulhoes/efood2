@@ -57,7 +57,7 @@ export const QuantityContainer = styled.p`
     justify-content: space-between
 `
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
     margin-bottom: 24px;
 `
 
