@@ -1,4 +1,9 @@
 import styled from 'styled-components'
+import { Button } from '../../Components/FoodCard/styles'
+
+type InputGroupProps = {
+    maxWidth?: string
+}
 
 export const CartItem = styled.li`
     display: flex;
@@ -52,8 +57,14 @@ export const QuantityContainer = styled.p`
     justify-content: space-between
 `
 
-export const InputGroup = styled.div`
-margin-bottom: 8px;
+export const FormContainer = styled.div`
+    margin-bottom: 24px;
+`
+
+export const InputGroup = styled.div<InputGroupProps>`
+    margin-bottom: 8px;
+    max-width: ${(props) => props.maxWidth || 'auto'};
+
     label {
         font-size: 14px;
         font-weight: 700;
@@ -70,8 +81,26 @@ margin-bottom: 8px;
         padding: 0 8px;
         width: 100%;
 
-    &.error {
-        border: 1px solid red;
+        &.error {
+            border: 1px solid red;
+        }
     }
-    }
+`
+
+export const FlexBox = styled.div`
+    display: flex;
+    gap: 34px;
+    flex-grow: 1;
+`
+
+export const CheckoutButton = styled(Button)`
+    margin-bottom: 8px;
+`
+
+export const Text = styled(QuantityContainer)`
+    font-weight: 400;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    font-family: Roboto;
+    line-height: 22px;
 `
