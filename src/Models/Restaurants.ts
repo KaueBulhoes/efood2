@@ -17,3 +17,23 @@ export type Restaurants = {
     rate: number;
     menu: ItemCardapio[];
 };
+
+export type PratoAPI = {
+    id: number
+    nome: string
+    descricao: string
+    foto: string
+    porcao: string
+    preco: number
+};
+
+export type RestauranteAPI = {
+    id: number
+    titulo: string
+    capa: string
+    descricao: string
+    destacado: boolean
+    tipo: string
+    avaliacao: number
+    cardapio: PratoAPI[]
+};

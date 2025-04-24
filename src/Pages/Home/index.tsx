@@ -6,13 +6,7 @@ import { useGetRestaurantsQuery } from "../../Api/restaurantService";
 
 
 const Home = () => {
-    // const [restaurantsCatalog, setRestaurantsCatalog] = useState<Restaurants[]>([])
-
     const {data: restaurantsCatalog = [], isLoading, error } = useGetRestaurantsQuery();
-
-    // useEffect(() => {
-    //     restaurantApi.getRestaurants().then(setRestaurantsCatalog)
-    // }, []);
 
     return (
     <>

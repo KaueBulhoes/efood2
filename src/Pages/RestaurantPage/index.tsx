@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import Banner from "../../Components/Banner/inedx"
+import Banner from "../../Components/Hero"
 import Footer from "../../Components/Footer"
 import Header from "../../Components/Header"
 import { TextContainer, Text, TextCart } from "../../Components/Header/styles"

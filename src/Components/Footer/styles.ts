@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../styles';
 
 export const FooterContainer = styled.header`
     background-color: #FFEBD9;
@@ -37,4 +38,9 @@ export const Description = styled.h1`
     font-weight: 400;
     text-align: center;
     margin-top: 80px;
+
+    ${theme.media.mobile} {
+        padding: 0 16px;
+        font-size: 9px;
+    }
 `;

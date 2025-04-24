@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../styles';
 
 interface HeaderContainerProps {
   $height?: string;
@@ -23,6 +24,14 @@ export const ContentWrapper = styled.div`
   align-items: center;
   margin: 0 171px;
   padding-bottom: 40px;
+  
+  ${theme.media.tablet} {
+    margin: 0 32px;
+  }
+
+  ${theme.media.mobile} {
+    margin: 0 16px;
+  }
 `;
 
 export const LogoImage = styled.img`
@@ -32,6 +41,12 @@ export const LogoImage = styled.img`
   top: 40px;
   z-index: 1;
   cursor: pointer;
+
+    ${theme.media.mobile} {
+    width: 90px;
+    top: 24px;
+    right: calc(50% - 45px);
+  }
 `;
 
 export const Title = styled.h1`
@@ -40,6 +55,16 @@ export const Title = styled.h1`
   font-size: 36px;
   text-align: center;
   margin-top: 196px;
+
+  ${theme.media.tablet} {
+    font-size: 28px;
+    margin-top: 120px;
+  }
+
+  ${theme.media.mobile} {
+    font-size: 22px;
+    margin-top: 100px;
+  }
 `;
 
 export const TextContainer = styled.div`
