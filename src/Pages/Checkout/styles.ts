@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Button } from '../../Components/FoodCard/styles'
 
 type InputGroupProps = {
-    maxWidth?: string
+    $maxWidth?: string
 }
 
 export const CartItem = styled.li`
@@ -47,7 +47,7 @@ export const CartItem = styled.li`
     }
 `
 
-export const QuantityContainer = styled.p`
+export const QuantityContainer = styled.div`
     display: flex;
     font-weight: 700;
     font-size: 14px;
@@ -63,7 +63,7 @@ export const FormContainer = styled.form`
 
 export const InputGroup = styled.div<InputGroupProps>`
     margin-bottom: 8px;
-    max-width: ${(props) => props.maxWidth || 'auto'};
+    max-width: ${(props) => props.$maxWidth || 'auto'};
     flex-grow: 1;
 
     label {
@@ -83,7 +83,7 @@ export const InputGroup = styled.div<InputGroupProps>`
         width: 100%;
 
         &.error {
-            border: 1px solid red;
+            border: 2px solid #cc3333;
         }
     }
 `
@@ -103,4 +103,14 @@ export const Text = styled(QuantityContainer)`
     margin-bottom: 24px;
     font-family: Roboto;
     line-height: 22px;
+`
+
+export const TextEmptyCart = styled.p`
+    font-weight: 400;
+    margin-top: 16px;
+    font-family: Roboto;
+    line-height: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: #FFEBD9;
 `

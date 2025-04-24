@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { InputMask  } from '@react-input/mask'
+
 
 import { RootReducer } from '../../Store'
 import { remove, close } from '../../Store/reducers/cart'
@@ -8,11 +12,7 @@ import { usePurchaseMutation } from '../../Api/restaurantService'
 
 import { Button } from '../../Components/FoodCard/styles'
 import SideBarCheckout from '../../Components/SideBarCheckout'
-import { CartItem, CheckoutButton, FlexBox, FormContainer, InputGroup, QuantityContainer, Text } from './styles'
-
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import InputMask from 'react-input-mask'
+import { CartItem, CheckoutButton, FlexBox, FormContainer, InputGroup, QuantityContainer, Text, TextEmptyCart } from './styles'
 
 type FormValues = {
     buyerName: string
@@ -35,6 +35,7 @@ const Checkout = () => {
     const removeItem = (id: number) => dispatch(remove(id))
     
     const [step, setStep] = useState(0)
+    const [orderId, setOrderId] = useState<string | null>(null)
 
     const nextStep = async () => {
         if (step === 0) {
@@ -82,8 +83,7 @@ const Checkout = () => {
             .required('O campo é obrigatório'),
             city: Yup.string().required('O campo é obrigatório'),
             cep: Yup.string()
-            .min(8, 'CEP deve ter 8 dígitos')
-            .max(8, 'CEP deve ter 8 dígitos')
+            .matches(/^\d{5}-\d{3}$/, 'CEP inválido')
             .required('O campo é obrigatório'),
             houseNumber: Yup.string().required('O campo é obrigatório'),
             complement: Yup.string()
@@ -93,8 +93,7 @@ const Checkout = () => {
         Yup.object({
             cardName: Yup.string().required('O campo é obrigatório'),
             cardNumber: Yup.string()
-            .min(16, 'Número do cartão deve ter 16 dígitos')
-            .max(16, 'Número do cartão deve ter 16 dígitos')
+            .matches(/^\d{4} \d{4} \d{4} \d{4}$/, 'Número do cartão inválido')
             .required('O campo é obrigatório'),
             cvv: Yup.string()
             .min(3, 'CVV deve ter 3 dígitos')
@@ -158,19 +157,15 @@ const Checkout = () => {
             }
         }).unwrap()
 
-            console.log('🧾 Pedido criado com ID:', response.orderId)
+            setOrderId(response.orderId)
         } catch (err) {
             console.error('Erro ao realizar a compra:', err)
         }
     }
 
-    const getErrorMessage = (fieldName: string, message?: string) => {
-        const isTouched = fieldName in form.touched
-        const isInvalid = fieldName in form.errors
-
-        if (isTouched && isInvalid) return message
-        return ''
-    }
+    const getErrorMessage = (fieldName: string) => {
+        return fieldName in form.touched && fieldName in form.errors
+    }      
 
     const getTotalPrice = () => {
         return items.reduce((acumulador, valorAtual) => {
@@ -181,13 +176,13 @@ const Checkout = () => {
     return (
         <SideBarCheckout
             title={
-                step === 0
+                isSuccess
+                ? `Pedido realizado - ${orderId}`
+                : step === 0
                 ? ''
                 : step === 1
                 ? 'Entrega'
-                : step === 2
-                ? `Pagamento - Valor a pagar ${formatPrice(getTotalPrice())}`
-                : 'Pedido realizado'
+                : `Pagamento - Valor a pagar ${formatPrice(getTotalPrice())}`
             }
             onClose={() => dispatch(close())}
         >
@@ -205,30 +200,37 @@ const Checkout = () => {
                 <>
                 {step === 0 && (
                     <>
-                        <ul>
-                            {items.map((item) => (
-                            <CartItem key={item.id}>
-                                <img src={item.image} alt={item.name} />
-                                <div>
-                                <h3>{item.name}</h3>
-                                <span>{formatPrice(item.price)}</span>
-                                <button onClick={() => removeItem(item.id)}>
-                                    <img src="/Assets/images/lixeira.svg" alt="Remover" />
-                                </button>
-                                </div>
-                            </CartItem>
-                            ))}
-                        </ul>
-                        <QuantityContainer>
-                            <p>Valor Total</p>
-                            <span>{formatPrice(getTotalPrice())}</span>
-                        </QuantityContainer>
-                        <Button 
-                            onClick={nextStep}
-                            disabled={items.length === 0}
-                        >
-                            Continuar com a entrega
-                        </Button>
+                        {items.length === 0 ? (
+                            <TextEmptyCart>
+                                O carrinho está vazio, adicione pelo menos um produto para continuar
+                                com a compra
+                            </TextEmptyCart>
+                        ) : (
+                            <>
+                                <ul>
+                                    {items.map((item) => (
+                                        <CartItem key={item.id}>
+                                            <img src={item.image} alt={item.name} />
+                                            <div>
+                                                <h3>{item.name}</h3>
+                                                <span>{formatPrice(item.price)}</span>
+                                                <button onClick={() => removeItem(item.id)}>
+                                                    <img src="/Assets/images/lixeira.svg" alt="Remover" />
+                                                </button>
+                                            </div>
+                                        </CartItem>
+                                    ))}
+                                </ul>
+                                <QuantityContainer>
+                                    <p>Valor Total</p>
+                                    <span>{formatPrice(getTotalPrice())}</span>
+                                </QuantityContainer><Button
+                                    onClick={nextStep}
+                                    disabled={items.length === 0}
+                                >
+                                    Continuar com a entrega
+                                </Button></>
+                        )}
                     </>
                 )}
 
@@ -244,8 +246,8 @@ const Checkout = () => {
                                             value={form.values.buyerName}
                                             onChange={form.handleChange}
                                             onBlur={form.handleBlur}
+                                            className={getErrorMessage('buyerName') ? 'error' : ''}
                                         />
-                                        <small>{getErrorMessage('buyerName', form.errors.buyerName)}</small>
                                     </InputGroup>
                                     <InputGroup>
                                         <label htmlFor="address">Endereço</label>
@@ -256,8 +258,8 @@ const Checkout = () => {
                                             value={form.values.address}
                                             onChange={form.handleChange}
                                             onBlur={form.handleBlur}
+                                            className={getErrorMessage('address') ? 'error' : ''}
                                         />
-                                        <small>{getErrorMessage('address', form.errors.address)}</small>
                                     </InputGroup>
                                     <FlexBox>
                                         <InputGroup>
@@ -269,22 +271,22 @@ const Checkout = () => {
                                                 value={form.values.city}
                                                 onChange={form.handleChange}
                                                 onBlur={form.handleBlur}
+                                                className={getErrorMessage('city') ? 'error' : ''}
                                             />
-                                            <small>{getErrorMessage('city', form.errors.city)}</small>
                                         </InputGroup>
                                         <InputGroup>
                                             <label htmlFor="cep">CEP</label>
                                             <InputMask
-                                                mask="99999-999"
+                                                mask="XXXXX-XXX"
+                                                replacement={{ 'X': /\d/ }}
                                                 id="cep"
                                                 type="text"
                                                 name="cep"
                                                 value={form.values.cep}
                                                 onChange={form.handleChange}
                                                 onBlur={form.handleBlur}
-                                                className={getErrorMessage('cep', form.errors.cep) ? 'error' : ''}
+                                                className={getErrorMessage('cep') ? 'error' : ''}
                                             />
-                                            <small>{getErrorMessage('cep', form.errors.cep)}</small>
                                         </InputGroup>
                                     </FlexBox>
                                     <InputGroup>
@@ -296,8 +298,8 @@ const Checkout = () => {
                                             value={form.values.houseNumber}
                                             onChange={form.handleChange}
                                             onBlur={form.handleBlur}
+                                            className={getErrorMessage('houseNumber') ? 'error' : ''}
                                         />
-                                        <small>{getErrorMessage('houseNumber', form.errors.houseNumber)}</small>
                                     </InputGroup>
                                     <InputGroup>
                                         <label htmlFor="complement">Complemento (opcional)</label>
@@ -332,63 +334,67 @@ const Checkout = () => {
                                         value={form.values.cardName}
                                         onChange={form.handleChange}
                                         onBlur={form.handleBlur}
+                                        className={getErrorMessage('cardName') ? 'error' : ''}
                                     />
-                                    <small>{getErrorMessage('cardName', form.errors.cardName)}</small>
                                 </InputGroup>
                                 <FlexBox>
                                     <InputGroup>
                                         <label htmlFor="cardNumber">Número do cartão</label>
                                         <InputMask
-                                            mask="9999 9999 9999 9999"
+                                            mask="XXXX XXXX XXXX XXXX"
+                                            replacement={{ 'X': /\d/ }}
                                             id="cardNumber"
                                             type="text"
                                             name="cardNumber"
                                             value={form.values.cardNumber}
                                             onChange={form.handleChange}
                                             onBlur={form.handleBlur}
+                                            className={getErrorMessage('cardNumber') ? 'error' : ''}
                                         />
-                                        <small>{getErrorMessage('cardNumber', form.errors.cardNumber)}</small>
                                     </InputGroup>
-                                    <InputGroup maxWidth='87px'>
+                                    <InputGroup $maxWidth='87px'>
                                         <label htmlFor="cvv">CVV</label>
                                         <InputMask
-                                            mask="999"
+                                            mask="XXX"
+                                            replacement={{ 'X': /\d/ }}
                                             id="cvv"
                                             type="text"
                                             name="cvv"
                                             value={form.values.cvv}
                                             onChange={form.handleChange}
                                             onBlur={form.handleBlur}
+                                            className={getErrorMessage('cvv') ? 'error' : ''}
                                         />
-                                        <small>{getErrorMessage('cvv', form.errors.cvv)}</small>
                                     </InputGroup>
                                 </FlexBox>
                                 <FlexBox>
                                     <InputGroup>
                                         <label htmlFor="expiresMonth">Mês de vencimento</label>
                                         <InputMask
-                                            mask="99"
+                                            mask="XX"
+                                            replacement={{ 'X': /\d/ }}
                                             id="expiresMonth"
                                             type="text"
                                             name="expiresMonth"
                                             value={form.values.expiresMonth}
                                             onChange={form.handleChange}
                                             onBlur={form.handleBlur}
+                                            className={getErrorMessage('expiresMonth') ? 'error' : ''}
                                         />
-                                        <small>{getErrorMessage('expiresMonth', form.errors.expiresMonth)}</small>
                                     </InputGroup>
                                     <InputGroup>
                                         <label htmlFor="expiresYear">Ano de vencimento</label>
                                         <InputMask
-                                            mask="99"
+                                            mask="XX"
+                                            replacement={{ 'X': /\d/ }}
                                             id="expiresYear"
                                             type="text"
                                             name="expiresYear"
                                             value={form.values.expiresYear}
                                             onChange={form.handleChange}
                                             onBlur={form.handleBlur}
+                                            className={getErrorMessage('expiresYear') ? 'error' : ''}
                                         />
-                                        <small>{getErrorMessage('expiresYear', form.errors.expiresYear)}</small>
                                     </InputGroup>
                                 </FlexBox>
                                 <CheckoutButton type="submit">Finalizar pagamento</CheckoutButton>
