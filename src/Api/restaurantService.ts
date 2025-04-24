@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RestauranteAPI, Restaurants } from '../Models/Restaurants'
+import { PurchasePayload, PurchaseResponse } from '../Models/Purchase'
 
 export const restaurantApi = createApi({
     reducerPath: 'restaurantApi',
@@ -26,8 +27,15 @@ export const restaurantApi = createApi({
             }))
             }))
         }
+        }),
+        purchase: builder.mutation<PurchaseResponse, PurchasePayload>({
+            query: (body) => ({
+                url: 'checkout',
+                method: 'POST',
+                body
+            })
         })
     })
 })
 
-export const { useGetRestaurantsQuery } = restaurantApi
+export const { useGetRestaurantsQuery, usePurchaseMutation } = restaurantApi
