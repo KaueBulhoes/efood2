@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { RootReducer } from '../../Store'
-import formatPrice from '../../utils/formatPrice'
 import { remove, close } from '../../Store/reducers/cart'
+import formatPrice from '../../utils/formatPrice'
+import { usePurchaseMutation } from '../../Api/restaurantService'
+
 import { Button } from '../../Components/FoodCard/styles'
 import SideBarCheckout from '../../Components/SideBarCheckout'
 import { CartItem, CheckoutButton, FlexBox, FormContainer, InputGroup, QuantityContainer, Text } from './styles'
+
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { usePurchaseMutation } from '../../Api/restaurantService'
+import InputMask from 'react-input-mask'
 
 type FormValues = {
     buyerName: string
@@ -38,7 +42,7 @@ const Checkout = () => {
             return
         }
     
-        const currentSchema = stepSchemas[step - 1] // step 1 -> valida entrega, step 2 -> valida pagamento
+        const currentSchema = stepSchemas[step - 1]
     
         try {
             await currentSchema.validate(form.values, { abortEarly: false })
@@ -64,7 +68,7 @@ const Checkout = () => {
 
     useEffect(() => {if (isOpen) {setStep(0)}}, [isOpen])
 
-    const [purchase, { isLoading, isError, data, isSuccess }] =
+    const [purchase, { isSuccess }] =
         usePurchaseMutation()
 
     const stepSchemas = [
@@ -270,13 +274,15 @@ const Checkout = () => {
                                         </InputGroup>
                                         <InputGroup>
                                             <label htmlFor="cep">CEP</label>
-                                            <input 
-                                                type="text" 
+                                            <InputMask
+                                                mask="99999-999"
                                                 id="cep"
+                                                type="text"
                                                 name="cep"
                                                 value={form.values.cep}
                                                 onChange={form.handleChange}
                                                 onBlur={form.handleBlur}
+                                                className={getErrorMessage('cep', form.errors.cep) ? 'error' : ''}
                                             />
                                             <small>{getErrorMessage('cep', form.errors.cep)}</small>
                                         </InputGroup>
@@ -332,9 +338,10 @@ const Checkout = () => {
                                 <FlexBox>
                                     <InputGroup>
                                         <label htmlFor="cardNumber">Número do cartão</label>
-                                        <input 
-                                            type="text" 
+                                        <InputMask
+                                            mask="9999 9999 9999 9999"
                                             id="cardNumber"
+                                            type="text"
                                             name="cardNumber"
                                             value={form.values.cardNumber}
                                             onChange={form.handleChange}
@@ -344,9 +351,10 @@ const Checkout = () => {
                                     </InputGroup>
                                     <InputGroup maxWidth='87px'>
                                         <label htmlFor="cvv">CVV</label>
-                                        <input 
-                                            type="text" 
+                                        <InputMask
+                                            mask="999"
                                             id="cvv"
+                                            type="text"
                                             name="cvv"
                                             value={form.values.cvv}
                                             onChange={form.handleChange}
@@ -358,9 +366,10 @@ const Checkout = () => {
                                 <FlexBox>
                                     <InputGroup>
                                         <label htmlFor="expiresMonth">Mês de vencimento</label>
-                                        <input 
-                                            type="text" 
+                                        <InputMask
+                                            mask="99"
                                             id="expiresMonth"
+                                            type="text"
                                             name="expiresMonth"
                                             value={form.values.expiresMonth}
                                             onChange={form.handleChange}
@@ -370,9 +379,10 @@ const Checkout = () => {
                                     </InputGroup>
                                     <InputGroup>
                                         <label htmlFor="expiresYear">Ano de vencimento</label>
-                                        <input 
-                                            type="text" 
+                                        <InputMask
+                                            mask="99"
                                             id="expiresYear"
+                                            type="text"
                                             name="expiresYear"
                                             value={form.values.expiresYear}
                                             onChange={form.handleChange}
