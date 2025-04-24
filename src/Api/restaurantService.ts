@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Restaurants } from '../Models/Restaurants'
+import { RestauranteAPI, Restaurants } from '../Models/Restaurants'
 
 export const restaurantApi = createApi({
     reducerPath: 'restaurantApi',
@@ -7,8 +7,8 @@ export const restaurantApi = createApi({
     endpoints: (builder) => ({
         getRestaurants: builder.query<Restaurants[], void>({
         query: () => 'restaurantes',
-        transformResponse: (response: any[]): Restaurants[] => {
-            return response.map((restaurante: any) => ({
+        transformResponse: (response: RestauranteAPI[]): Restaurants[] => {
+            return response.map((restaurante) => ({
             id: restaurante.id,
             title: restaurante.titulo,
             image: restaurante.capa,
@@ -16,7 +16,7 @@ export const restaurantApi = createApi({
             isFeatured: restaurante.destacado,
             type: restaurante.tipo,
             rate: restaurante.avaliacao,
-            menu: restaurante.cardapio.map((item: any) => ({
+            menu: restaurante.cardapio.map((item) => ({
                 id: item.id,
                 name: item.nome,
                 description: item.descricao,
