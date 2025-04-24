@@ -64,6 +64,7 @@ export const FormContainer = styled.form`
 export const InputGroup = styled.div<InputGroupProps>`
     margin-bottom: 8px;
     max-width: ${(props) => props.maxWidth || 'auto'};
+    flex-grow: 1;
 
     label {
         font-size: 14px;
@@ -90,7 +91,6 @@ export const InputGroup = styled.div<InputGroupProps>`
 export const FlexBox = styled.div`
     display: flex;
     gap: 34px;
-    flex-grow: 1;
 `
 
 export const CheckoutButton = styled(Button)`
