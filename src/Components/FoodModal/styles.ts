@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../styles';
 
 export const FoodModalContainer = styled.div`
     display: flex;
@@ -15,6 +16,22 @@ export const FoodModalContainer = styled.div`
         height: 280px;
         width: 280px;
         object-fit: cover;
+        
+        ${theme.media.mobile} {
+            height: 160px;
+            width: 160px;
+        }
+    }
+
+    ${theme.media.tablet} {
+        flex-direction: column;
+        align-items: center;
+        padding: 24px;
+    }
+
+    ${theme.media.mobile} {
+        padding: 16px;
+        gap: 16px;
     }
 `
 
@@ -29,6 +46,17 @@ export const ModalTextConainter = styled.div`
         line-height: 100%;
         margin-bottom: 16px;
     }
+
+    ${theme.media.tablet} {
+        align-items: center;
+        text-align: center;
+    }
+
+    ${theme.media.mobile} {
+        > h3 {
+            font-size: 16px;
+        }
+    }
 `
 
 export const ModalDescription = styled.p`
@@ -36,6 +64,10 @@ export const ModalDescription = styled.p`
     font-size: 14px;
     line-height: 22px;
     margin-bottom: 20px;
+
+    ${theme.media.mobile} {
+        font-size: 13px;
+    }
 `
 
 export const ModalPortionText = styled.p`
@@ -58,6 +90,12 @@ export const ModalAddButton = styled.button`
     border: none;
     cursor: pointer;
     margin-top: auto;
+
+    ${theme.media.mobile} {
+        width: 100%;
+        font-size: 13px;
+        height: 28px;
+    }
 `
 
 export const ModalCloseButton = styled.button`
@@ -72,6 +110,13 @@ export const ModalCloseButton = styled.button`
     img {
         width: 16px;
         height: 16px;
+    }
+
+    ${theme.media.mobile} {
+        img {
+            width: 12px;
+            height: 12px;
+        }
     }
 `
 export const Overlay = styled.div`

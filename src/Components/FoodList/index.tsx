@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FoodCard from "../FoodCard";
-import { FoodListContainer } from "./styles";
+import { FoodListContainer, Wrapper } from "./styles";
 import FoodModal from "../FoodModal";
 import { ItemCardapio } from "../../Models/Restaurants";
 
@@ -19,17 +19,19 @@ const FoodList = ({menuItems}: Props) => {
 
     return (
         <>
-            <FoodListContainer>
-                {menuItems.map((menu) => (
-                    <FoodCard 
-                        key={menu.id}
-                        title={menu.name}
-                        description={menu.description}
-                        image={menu.image}
-                        onOpenModal={() => openModal(menu)}
-                    />
-                ))}
-            </FoodListContainer>
+            <Wrapper>
+                <FoodListContainer>
+                    {menuItems.map((menu) => (
+                        <FoodCard 
+                            key={menu.id}
+                            title={menu.name}
+                            description={menu.description}
+                            image={menu.image}
+                            onOpenModal={() => openModal(menu)}
+                        />
+                    ))}
+                </FoodListContainer>
+            </Wrapper>
             {selectedItem && (
                 <FoodModal
                 isVisible={modal}
